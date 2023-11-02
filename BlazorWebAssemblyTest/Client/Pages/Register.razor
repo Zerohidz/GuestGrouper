@@ -85,6 +85,16 @@
             <input type="text" class="form-control" id="name" name="name" @bind-value="_model.Name" required>
         </div>
         <div class="form-group">
+            <label for="gender">Cinsiyet:</label>
+            <select class="form-control" id="gender" name="gender" @bind="_model.Gender" required>
+                <option value="">Cinsiyet Seçiniz</option>
+                @foreach (var gender in Enum.GetValues<Gender>())
+                {
+                    <option value="@gender">@gender</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
             <label for="university">Üniversite:</label>
             <select class="form-control" id="university" name="university" @bind="_model.University" required>
                 <option value="">Üniversite Seçiniz</option>
@@ -154,7 +164,7 @@
         "Ufuk Üniversitesi",
         "Yüksek İhtisas Üniversitesi"
     };
-    
+
     private static readonly List<string> _universityDepartments = new()
     {
         "Bilgisayar Mühendisliği",
