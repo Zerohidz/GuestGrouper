@@ -106,18 +106,19 @@
         <div class="form-group">
             <label for="interests">İlgi Alanları:</label>
             <div class="interests-group">
-                @foreach (var interest in _interests)
+                @for (int i = 0; i < _interests.Count; i++)
                 {
+                    int currentIndex = i;
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="@interest" name="interests" value="@interest" />
-                        <label class="form-check-label" for="@interest">@interest</label>
+                        <input type="checkbox" class="form-check-input" id="@_interests[i]" name="@_interests[i]" @onchange="eventArgs => { InterestClicked(currentIndex, (bool)eventArgs.Value); }" />
+                        <label class="form-check-label" for="@_interests[i]">@_interests[i]</label>
                     </div>
                 }
             </div>
         </div>
         <div class="form-group">
             <label for="phone">Telefon Numarası (optional):</label>
-            <input type="tel" class="form-control" id="phone" name="phone">
+            <input type="tel" class="form-control" id="phone" name="phone" @bind-value="_model.PhoneNumber">
         </div>
         <div style="margin-top: 10px;">
             <button class="btn btn-success" type="submit">Click Me!</button>
@@ -129,7 +130,7 @@
 @code {
     private RegisterRequestModel _model = new();
 
-    List<string> _universities = new List<string>
+    List<string> _universities = new()
     {
         "Ankara Bilim Üniversitesi",
         "Ankara Hacı Bayram Veli Üniversitesi",
@@ -153,8 +154,8 @@
         "Ufuk Üniversitesi",
         "Yüksek İhtisas Üniversitesi"
     };
-
-    private static readonly List<string> _universityDepartments = new List<string>
+    
+    private static readonly List<string> _universityDepartments = new()
     {
         "Bilgisayar Mühendisliği",
         "Bilişim Sistemleri Mühendisliği",
@@ -182,7 +183,7 @@
         "Yazılım Mühendisliği"
     };
 
-    private static readonly List<string> _interests = new List<string>
+    private static readonly List<string> _interests = new()
     {
         "Aviyonik Sistemler",
         "Bilgisayar Ağları",
@@ -217,10 +218,22 @@
         "Web Geliştirme",
     };
 
-    private async Task HandleSubmit() 
+    // private static readonly List<bool> _selectedInterests = _interests.Select(i => false).ToList();
+
+    private async Task HandleSubmit()
     {
         await HttpClient.PostAsJsonAsync("api/Auth/register", _model);
         Console.WriteLine($"{_model.Name} kaydedildi!");
+    }
+
+    private void InterestClicked(int i, bool isChecked)
+    {
+        Console.WriteLine(i);
+        _model.Interests ??= new();
+        if (isChecked && !_model.Interests.Contains(_interests[i]))
+            _model.Interests.Add(_interests[i]);
+        else if (!isChecked && _model.Interests.Contains(_interests[i]))
+            _model.Interests.Remove(_interests[i]);
     }
 
     // TODO: interestler bind'lı değil
