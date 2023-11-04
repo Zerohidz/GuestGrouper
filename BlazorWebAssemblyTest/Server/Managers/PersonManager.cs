@@ -3,6 +3,8 @@ using BlazorWebAssemblyTest.Shared;
 
 namespace BlazorWebAssemblyTest.Server.Managers;
 
+// TODO: SeatId
+
 public class PersonManager
 {
     private readonly List<Person> _maleClients = new();

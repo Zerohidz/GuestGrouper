@@ -54,11 +54,7 @@ else
             {
                 _groupMembers = await Http.GetFromJsonAsync<GroupMemberDto[]>($"api/Groups/getMembers?name={Name}");
 
-                if (_groupMembers != null)
-                {
-                    Console.WriteLine(_groupMembers.Length);
-                    break;
-                }
+                break;
             }
             catch (Exception ex)
             {

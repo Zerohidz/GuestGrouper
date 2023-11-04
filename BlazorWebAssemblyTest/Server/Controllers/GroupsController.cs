@@ -21,7 +21,6 @@ public class GroupsController : ControllerBase
         if (members == null)
             return NotFound();
 
-        Console.WriteLine(members.Length);
         return Ok(members);
     }
 

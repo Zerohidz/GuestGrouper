@@ -107,6 +107,7 @@
         <div class="form-group">
             <label for="department">Department:</label>
             <select class="form-control" id="department" name="department" @bind="_model.Department" required>
+                <option value="">Bölüm Seçiniz</option>
                 @foreach (var department in _universityDepartments)
                 {
                     <option value="@department">@department</option>
