@@ -7,6 +7,7 @@ public class PersonManager
 {
     private readonly List<Person> _maleClients = new();
     private readonly List<Person> _femaleClients = new();
+    private bool _isGrouped = false;
 
     public void AddPerson(Person person)
     {
@@ -20,6 +21,8 @@ public class PersonManager
     {
         GroupClients(_maleClients);
         GroupClients(_femaleClients);
+
+        _isGrouped = true;
     }
 
     private void GroupClients(List<Person> clientList)
@@ -107,6 +110,9 @@ public class PersonManager
 
     internal GroupMemberDto[] GetGroupMembers(string name)
     {
+        if (!_isGrouped)
+            return null;
+
         List<Person> allClients = new(_maleClients);
         allClients.AddRange(_femaleClients);
 

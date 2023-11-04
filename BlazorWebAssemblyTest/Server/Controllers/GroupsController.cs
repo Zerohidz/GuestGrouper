@@ -24,4 +24,11 @@ public class GroupsController : ControllerBase
         Console.WriteLine(members.Length);
         return Ok(members);
     }
+
+    [HttpGet("group")]
+    public IActionResult Group()
+    {
+        _personManager.GroupClients();
+        return Ok();
+    }
 }

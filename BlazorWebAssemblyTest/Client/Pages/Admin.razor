@@ -1,0 +1,43 @@
+﻿@page "/admin"
+@inject HttpClient HttpClient
+@inject IJSRuntime JSRuntime
+
+<h3>Admin Page</h3>
+
+@if (!isAdminAuthenticated)
+{
+    <div class="form-group">
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" @bind="password" class="form-control" />
+    </div>
+
+    <button @onclick="CheckPassword" class="btn btn-primary">Login</button>
+}
+else
+{
+    <button @onclick="GroupMembers" class="btn btn-success">Group Members</button>
+}
+
+@code {
+    private string password = "";
+    private bool isAdminAuthenticated = false;
+
+    private string adminPassword = "zerohidz42";
+
+    private async Task CheckPassword()
+    {
+        if (password == adminPassword)
+        {
+            isAdminAuthenticated = true;
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Wrong Password!");
+        }
+    }
+
+    private async Task GroupMembers()
+    {
+        await HttpClient.GetAsync("api/Groups/group");
+    }
+}
