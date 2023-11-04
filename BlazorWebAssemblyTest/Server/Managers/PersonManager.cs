@@ -56,6 +56,8 @@ public class PersonManager
             similarities.Add((person, GetSimilarityAmout(groupLeader, person)));
         }
 
+        Random random = new Random();
+        similarities = similarities.OrderBy(p => random.Next()).ToList();
         similarities = similarities.OrderByDescending(p => p.Similarity).ToList();
         for (int i = 0; i < 3; i++)
         {
@@ -68,6 +70,7 @@ public class PersonManager
             similarities.RemoveAt(0);
         }
 
+        Console.WriteLine("Group ---------------");
         foreach (Person client in newGroup)
         {   
             client.GroupMembers!.Clear();
@@ -77,14 +80,28 @@ public class PersonManager
                     continue;
                 client.GroupMembers.Add(otherClient);
             }
-        }
 
-        // Male, Female görünüş
-        // GetSimilarityAmout()
+            Console.WriteLine(client.Name);
+        }
+        Console.WriteLine();
     }
 
-    private int GetSimilarityAmout(Person person1, Person person2)
+    private static int GetSimilarityAmout(Person person1, Person person2)
     {
-        return 0;
+        int similarity = 0;
+
+        if (person1.University == person2.University)
+            similarity += 5;
+        if (person1.Department == person2.Department)
+            similarity += 2;
+        foreach (string interest in person1.Interests!)
+        {
+            if (person2.Interests!.Contains(interest))
+                similarity += 7;
+        }
+
+        Console.WriteLine($"{person1.Name} and {person2.Name} are {similarity} similar.");
+
+        return similarity;
     }
 }

@@ -12,7 +12,7 @@ public record Person(
     string[]? Interests = null
 )
 {
-    public Person() : this(new(), null, null, null, null, null, null)
+    public Person() : this(new(), null, null, null, null, null, new string[0])
     {
     }
 
