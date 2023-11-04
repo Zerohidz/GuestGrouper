@@ -16,8 +16,75 @@ public class PersonManager
             _femaleClients.Add(person);
     }
 
-    public void MatchGroups()
+    public void GroupClients()
     {
-        // TODO: 4lü gruplar halinde match'le
+        GroupClients(_maleClients);
+        GroupClients(_femaleClients);
+    }
+
+    private void GroupClients(List<Person> clientList)
+    {
+        if (clientList.Count < 1)
+        {
+            Console.WriteLine("Listede adam yok");
+            return;
+        }
+
+        List<Person> ungrouped = new(clientList);
+
+        while (ungrouped.Count > 0)
+        {
+            Person groupLeader = ungrouped[0]; // Pick the first ungrouped person as the leader of a group
+            ungrouped.RemoveAt(0);
+
+            FindGroupMembers(ungrouped, groupLeader);
+        }
+
+        // Now each client knows its group members
+
+    }
+
+    private void FindGroupMembers(List<Person> ungrouped, Person groupLeader)
+    {
+        List<Person> newGroup = new();
+        newGroup.Add(groupLeader);
+
+        List<(Person Person, int Similarity)> similarities = new();
+        for (int i = 0; i < ungrouped.Count; i++)
+        {
+            Person person = ungrouped[i];
+            similarities.Add((person, GetSimilarityAmout(groupLeader, person)));
+        }
+
+        similarities = similarities.OrderByDescending(p => p.Similarity).ToList();
+        for (int i = 0; i < 3; i++)
+        {
+            if (similarities.Count < 1)
+                break;
+
+            Person person = similarities[0].Person;
+            newGroup.Add(person);
+            ungrouped.Remove(person);
+            similarities.RemoveAt(0);
+        }
+
+        foreach (Person client in newGroup)
+        {   
+            client.GroupMembers!.Clear();
+            foreach (Person otherClient in newGroup)
+            {
+                if (client == otherClient)
+                    continue;
+                client.GroupMembers.Add(otherClient);
+            }
+        }
+
+        // Male, Female görünüş
+        // GetSimilarityAmout()
+    }
+
+    private int GetSimilarityAmout(Person person1, Person person2)
+    {
+        return 0;
     }
 }

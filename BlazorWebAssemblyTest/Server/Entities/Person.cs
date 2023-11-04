@@ -3,7 +3,7 @@ using BlazorWebAssemblyTest.Shared;
 namespace BlazorWebAssemblyTest.Server.Entities;
 
 public record Person(
-    Person[]? GroupMembers = null,
+    List<Person>? GroupMembers = null,
     string? Name = null,
     Gender? Gender = null,
     string? PhoneNumber = null,
@@ -12,10 +12,15 @@ public record Person(
     string[]? Interests = null
 )
 {
+    public Person() : this(new(), null, null, null, null, null, null)
+    {
+    }
+
     public static implicit operator Person(RegisterRequestModel model)
     {
         return new Person()
         {
+            GroupMembers = new(),
             Name = model.Name,
             Gender = model.Gender,
             PhoneNumber = model.PhoneNumber,
