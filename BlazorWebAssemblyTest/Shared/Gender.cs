@@ -10,3 +10,16 @@ public enum Gender
     Male,
     Female
 }
+
+public static class GenderExtensions
+{
+    public static string GetName(this Gender gender)
+    {
+        return gender switch
+        {
+            Gender.Male => "Erkek",
+            Gender.Female => "Kadın",
+            _ => "",
+        };
+    }
+}

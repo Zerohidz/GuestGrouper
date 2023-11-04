@@ -88,9 +88,9 @@
             <label for="gender">Cinsiyet:</label>
             <select class="form-control" id="gender" name="gender" @bind="_model.Gender" required>
                 <option value="">Cinsiyet Seçiniz</option>
-                @foreach (var gender in Enum.GetValues<Gender>())
+                @foreach (Gender gender in Enum.GetValues<Gender>())
                 {
-                    <option value="@gender">@gender</option>
+                    <option value="@gender">@gender.GetName()</option>
                 }
             </select>
         </div>
