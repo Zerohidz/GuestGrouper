@@ -4,6 +4,7 @@ namespace BlazorWebAssemblyTest.Server.Entities;
 
 public record Person(
     List<Person>? GroupMembers = null,
+    int? SeatId = null,
     string? Name = null,
     Gender? Gender = null,
     string? PhoneNumber = null,
@@ -12,7 +13,7 @@ public record Person(
     string[]? Interests = null
 )
 {
-    public Person() : this(new(), null, null, null, null, null, new string[0])
+    public Person() : this(new(), null, null, null, null, null, null, new string[0])
     {
     }
 
@@ -21,6 +22,7 @@ public record Person(
         return new Person()
         {
             GroupMembers = new(),
+            SeatId = model.SeatId,
             Name = model.Name,
             Gender = model.Gender,
             PhoneNumber = model.PhoneNumber,

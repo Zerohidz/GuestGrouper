@@ -234,6 +234,7 @@
     {
         await HttpClient.PostAsJsonAsync("api/Auth/register", _model);
         Console.WriteLine($"{_model.Name} kaydedildi!");
+        NavManager.NavigateTo($"/groupView/{_model.Name}");
     }
 
     private void InterestClicked(int i, bool isChecked)

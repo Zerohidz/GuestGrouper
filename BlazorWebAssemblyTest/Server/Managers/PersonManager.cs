@@ -104,4 +104,26 @@ public class PersonManager
 
         return similarity;
     }
+
+    internal GroupMemberDto[] GetGroupMembers(string name)
+    {
+        List<Person> allClients = new(_maleClients);
+        allClients.AddRange(_femaleClients);
+
+        foreach (Person client in allClients)
+        {
+            if (client.Name == name)
+            {
+                return client.GroupMembers!.Select(p => new GroupMemberDto
+                {
+                    SeatId = p.SeatId,
+                    Name = p.Name,
+                    University = p.University,
+                    Department = p.Department
+                }).ToArray();
+            }
+        }
+
+        return null;
+    }
 }
