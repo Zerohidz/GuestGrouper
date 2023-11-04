@@ -62,9 +62,12 @@ public class PersonManager
         Random random = new Random();
         similarities = similarities.OrderBy(p => random.Next()).ToList();
         similarities = similarities.OrderByDescending(p => p.Similarity).ToList();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (similarities.Count < 1)
+                break;
+
+            if (i == 4 && similarities.Count != 1)
                 break;
 
             Person person = similarities[0].Person;

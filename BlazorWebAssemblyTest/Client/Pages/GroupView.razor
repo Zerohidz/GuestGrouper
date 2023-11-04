@@ -20,6 +20,12 @@ else
             </tr>
         </thead>
         <tbody>
+            @if (_groupMembers.Length < 1)
+            {
+                <tr>
+                    <td colspan="4">Grup üyesi bulunamadı.</td>
+                </tr>
+            }
             @foreach (var member in _groupMembers)
             {
                 <tr>
