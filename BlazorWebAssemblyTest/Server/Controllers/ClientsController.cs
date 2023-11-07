@@ -1,4 +1,5 @@
 ﻿using BlazorWebAssemblyTest.Server.Managers;
+using BlazorWebAssemblyTest.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorWebAssemblyTest.Server.Controllers;
@@ -17,7 +18,15 @@ public class ClientsController : ControllerBase
     [HttpGet("getMembers")]
     public IActionResult GetMembers(string? seatId)
     {
-        var members = _personManager.GetGroupMembers(seatId);
+        GroupMemberDto[]? members = null;
+        try
+        {
+            members = _personManager.GetGroupMembers(seatId);
+        }
+        catch (Exception ex)
+        {
+
+        }
         if (members == null)
             return NotFound();
 

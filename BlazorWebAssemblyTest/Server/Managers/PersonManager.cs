@@ -3,7 +3,8 @@ using BlazorWebAssemblyTest.Shared;
 
 namespace BlazorWebAssemblyTest.Server.Managers;
 
-// TODO: SeatId
+// TODO: bug çöz
+// TODO: unique seat id
 
 public class PersonManager
 {
@@ -21,19 +22,6 @@ public class PersonManager
 
     public void GroupClients()
     {
-        AddPerson(new() { SeatId= "1", Name = "Erkek0", Gender = Gender.Male, University = "a", Department = "d", Interests = new string[] { "a", "b", "t" } });
-        AddPerson(new() { SeatId= "2", Name = "Erkek1", Gender = Gender.Male, University = "a", Department = "d", Interests = new string[] { "a", "c", "r" } });
-        AddPerson(new() { SeatId= "3", Name = "Erkek2", Gender = Gender.Male, University = "b", Department = "e", Interests = new string[] { "a", "b", "r" } });
-        AddPerson(new() { SeatId= "4", Name = "Erkek3", Gender = Gender.Male, University = "b", Department = "f", Interests = new string[] { "c", "s", "t" } });
-        AddPerson(new() { SeatId= "5", Name = "Erkek4", Gender = Gender.Male, University = "a", Department = "f", Interests = new string[] { "a", "s", "r" } });
-
-        AddPerson(new() { SeatId= "6", Name = "Kadýn5", Gender = Gender.Female, University = "c", Department = "f", Interests = new string[] { "a", "s", "c" } });
-        AddPerson(new() { SeatId= "7", Name = "Kadýn2", Gender = Gender.Female, University = "b", Department = "e", Interests = new string[] { "a", "b", "r" } });
-        AddPerson(new() { SeatId= "8", Name = "Kadýn3", Gender = Gender.Female, University = "b", Department = "f", Interests = new string[] { "c", "s", "t" } });
-        AddPerson(new() { SeatId= "9", Name = "Kadýn1", Gender = Gender.Female, University = "a", Department = "d", Interests = new string[] { "t", "a", "r" } });
-        AddPerson(new() { SeatId= "10", Name = "Kadýn0", Gender = Gender.Female, University = "a", Department = "d", Interests = new string[] { "a", "b", "s" } });
-        AddPerson(new() { SeatId= "11", Name = "Kadýn4", Gender = Gender.Female, University = "a", Department = "f", Interests = new string[] { "c", "s", "r" } });
-
         GroupClients(_maleClients);
         GroupClients(_femaleClients);
 
@@ -52,7 +40,7 @@ public class PersonManager
 
         while (ungrouped.Count > 0)
         {
-            Person groupLeader = ungrouped[0]; // Pick the first ungrouped person as the leader of a group
+            Person groupLeader = ungrouped[0];
             ungrouped.RemoveAt(0);
 
             FindGroupMembers(ungrouped, groupLeader);
@@ -155,5 +143,7 @@ public class PersonManager
     {
         _maleClients.Clear();
         _femaleClients.Clear();
+
+        _isGrouped = false;
     }
 }

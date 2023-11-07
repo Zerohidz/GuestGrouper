@@ -13,7 +13,9 @@ public class Program
         builder.Services.AddRazorPages();
         builder.Services.AddManagers();
 
+
         var app = builder.Build();
+
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
