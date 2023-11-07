@@ -81,6 +81,10 @@
         </div>
         <h2 class="text-center">Mühendishane Açılış Programı</h2>
         <div class="form-group">
+            <label for="seatId">Koltuk Numarası:</label>
+            <input type="number" class="form-control" id="seatId" name="seatId" @bind-value="_model.SeatId" min="1" max="100" required>
+        </div>
+        <div class="form-group">
             <label for="name">Ad Soyad:</label>
             <input type="text" class="form-control" id="name" name="name" @bind-value="_model.Name" required>
         </div>
@@ -235,7 +239,7 @@
     {
         await HttpClient.PostAsJsonAsync("api/Auth/register", _model);
         Console.WriteLine($"{_model.Name} kaydedildi!");
-        NavManager.NavigateTo($"/groupView/{_model.Name}");
+        NavManager.NavigateTo($"/groupView/{_model.SeatId}");
     }
 
     private void InterestClicked(int i, bool isChecked)

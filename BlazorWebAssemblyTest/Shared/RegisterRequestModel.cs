@@ -2,7 +2,7 @@
 namespace BlazorWebAssemblyTest.Shared;
 public class RegisterRequestModel
 {
-    public int? SeatId { get; set; } = null;
+    public string? SeatId { get; set; } = null;
     public string? Name { get; set; } = null;
     public Gender? Gender { get; set; } = null;
     public string? PhoneNumber { get; set; } = null;

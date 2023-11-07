@@ -4,7 +4,7 @@ namespace BlazorWebAssemblyTest.Server.Entities;
 
 public record Person(
     List<Person>? GroupMembers = null,
-    int? SeatId = null,
+    string? SeatId = null,
     string? Name = null,
     Gender? Gender = null,
     string? PhoneNumber = null,

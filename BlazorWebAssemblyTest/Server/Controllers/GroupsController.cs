@@ -15,9 +15,9 @@ public class GroupsController : ControllerBase
     }
 
     [HttpGet("getMembers")]
-    public IActionResult GetMembers(string name)
+    public IActionResult GetMembers(string? seatId)
     {
-        var members = _personManager.GetGroupMembers(name);
+        var members = _personManager.GetGroupMembers(seatId);
         if (members == null)
             return NotFound();
 

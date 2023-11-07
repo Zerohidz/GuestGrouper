@@ -4,9 +4,6 @@ using BlazorWebAssemblyTest.Shared;
 namespace BlazorWebAssemblyTest.Server.Managers;
 
 // TODO: SeatId
-// TODO: 5 kiþi 5
-//       6 kiþi 6
-//       7 kiþi 5 2
 
 public class PersonManager
 {
@@ -116,7 +113,7 @@ public class PersonManager
         return similarity;
     }
 
-    internal GroupMemberDto[] GetGroupMembers(string name)
+    internal GroupMemberDto[] GetGroupMembers(string? seatId)
     {
         if (!_isGrouped)
             return null;
@@ -126,7 +123,7 @@ public class PersonManager
 
         foreach (Person client in allClients)
         {
-            if (client.Name == name)
+            if (client.SeatId == seatId)
             {
                 return client.GroupMembers!.Select(p => new GroupMemberDto
                 {
