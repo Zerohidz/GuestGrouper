@@ -14,7 +14,7 @@ internal class Program
         manager.AddPerson(new() { Name = "Erkek2", Gender = Gender.Male, University = "b", Department = "e", Interests = new string[] { "a", "b", "r" } });
         manager.AddPerson(new() { Name = "Erkek3", Gender = Gender.Male, University = "b", Department = "f", Interests = new string[] { "c", "s", "t" } });
         manager.AddPerson(new() { Name = "Erkek4", Gender = Gender.Male, University = "a", Department = "f", Interests = new string[] { "a", "s", "r" } });
-        manager.AddPerson(new() { Name = "Erkek5", Gender = Gender.Male, University = "c", Department = "f", Interests = new string[] { "s", "s", "t" } });
+        //manager.AddPerson(new() { Name = "Erkek5", Gender = Gender.Male, University = "c", Department = "f", Interests = new string[] { "s", "s", "t" } });
 
         manager.AddPerson(new() { Name = "Kadın5", Gender = Gender.Female, University = "c", Department = "f", Interests = new string[] { "a", "s", "c" } });
         manager.AddPerson(new() { Name = "Kadın2", Gender = Gender.Female, University = "b", Department = "e", Interests = new string[] { "a", "b", "r" } });

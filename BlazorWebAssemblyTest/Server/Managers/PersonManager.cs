@@ -4,6 +4,9 @@ using BlazorWebAssemblyTest.Shared;
 namespace BlazorWebAssemblyTest.Server.Managers;
 
 // TODO: SeatId
+// TODO: 5 kiþi 5
+//       6 kiþi 6
+//       7 kiþi 5 2
 
 public class PersonManager
 {
@@ -64,12 +67,12 @@ public class PersonManager
         Random random = new Random();
         similarities = similarities.OrderBy(p => random.Next()).ToList();
         similarities = similarities.OrderByDescending(p => p.Similarity).ToList();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (similarities.Count < 1)
                 break;
 
-            if (i == 4 && similarities.Count != 1)
+            if (i == 3 && similarities.Count != 1)
                 break;
 
             Person person = similarities[0].Person;
