@@ -4,11 +4,11 @@
 
 <h3>Admin Page</h3>
 
-@if (!isAdminAuthenticated)
+@if (!_isAdminAuthenticated)
 {
     <div class="form-group">
         <label for="password">Enter Password:</label>
-        <input type="password" id="password" @bind="password" class="form-control" />
+        <input type="password" id="password" @bind="_password" class="form-control" @onkeyup="HandleKeyUp" />
     </div>
 
     <button @onclick="CheckPassword" class="btn btn-primary">Login</button>
@@ -16,19 +16,20 @@
 else
 {
     <button @onclick="GroupMembers" class="btn btn-success">Group Members</button>
+    <button @onclick="ClearUserData" class="btn btn-danger">Clear Registered User Data</button>
 }
 
 @code {
-    private string password = "";
-    private bool isAdminAuthenticated = false;
+    private string _password = "";
+    private bool _isAdminAuthenticated = false;
 
     private string adminPassword = "zerohidz42";
 
     private async Task CheckPassword()
     {
-        if (password == adminPassword)
+        if (_password == adminPassword)
         {
-            isAdminAuthenticated = true;
+            _isAdminAuthenticated = true;
         }
         else
         {
@@ -38,6 +39,19 @@ else
 
     private async Task GroupMembers()
     {
-        await HttpClient.GetAsync("api/Groups/group");
+        await HttpClient.GetAsync("api/Clients/group");
+    }
+
+    private async Task ClearUserData()
+    {
+        await HttpClient.GetAsync("api/Clients/clearData");
+    }
+
+    private void HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !_isAdminAuthenticated)
+        {
+            CheckPassword();
+        }
     }
 }

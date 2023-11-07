@@ -5,11 +5,11 @@ namespace BlazorWebAssemblyTest.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class GroupsController : ControllerBase
+public class ClientsController : ControllerBase
 {
     private PersonManager _personManager;
 
-    public GroupsController(PersonManager personManager)
+    public ClientsController(PersonManager personManager)
     {
         _personManager = personManager;
     }
@@ -28,6 +28,13 @@ public class GroupsController : ControllerBase
     public IActionResult Group()
     {
         _personManager.GroupClients();
+        return Ok();
+    }
+
+    [HttpGet("clearData")]
+    public IActionResult ClearData()
+    {
+        _personManager.ClearData();
         return Ok();
     }
 }

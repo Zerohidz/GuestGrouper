@@ -50,8 +50,7 @@ else
         {
             try
             {
-                Console.WriteLine($"api/Groups/getMembers?seatId={SeatId}");
-                _groupMembers = await Http.GetFromJsonAsync<GroupMemberDto[]>($"api/Groups/getMembers?seatId={SeatId}");
+                _groupMembers = await Http.GetFromJsonAsync<GroupMemberDto[]>($"api/Clients/getMembers?seatId={SeatId}");
 
                 break;
             }

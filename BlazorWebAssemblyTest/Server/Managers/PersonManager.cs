@@ -137,4 +137,10 @@ public class PersonManager
 
         return null;
     }
+
+    internal void ClearData()
+    {
+        _maleClients.Clear();
+        _femaleClients.Clear();
+    }
 }
