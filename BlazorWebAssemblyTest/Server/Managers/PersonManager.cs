@@ -15,9 +15,20 @@ public class PersonManager
     public void AddPerson(Person person)
     {
         if (person.Gender == Gender.Male)
+        {
+            Person? duplicate = _maleClients.FirstOrDefault(c => c.Name == person.Name);
+            if (duplicate != null)
+                _maleClients.Remove(duplicate);
+
             _maleClients.Add(person);
+        }
         else if (person.Gender == Gender.Female)
+        {
+            Person? duplicate = _femaleClients.FirstOrDefault(c => c.Name == person.Name);
+            if (duplicate != null)
+                _femaleClients.Remove(duplicate);
             _femaleClients.Add(person);
+        }
     }
 
     public void GroupClients()
@@ -99,10 +110,10 @@ public class PersonManager
     {
         int similarity = 0;
 
-        if (person1.University == person2.University)
+        if (person1.University != person2.University)
             similarity += 5;
-        if (person1.Department == person2.Department)
-            similarity += 2;
+        if (person1.Department != person2.Department)
+            similarity += 5;
         foreach (string interest in person1.Interests!)
         {
             if (person2.Interests!.Contains(interest))

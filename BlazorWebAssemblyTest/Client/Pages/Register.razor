@@ -8,9 +8,9 @@
     <style>
         /* Custom CSS for the technological theme */
         body {
-            background-color: #0056b3;
-            background-image: url('https://www.psw-eng.co.za/wp-content/uploads/2017/06/Engineer-Background.png');
-            background-size: cover;
+            background-color: #ffffff;
+            background-image: url('https://i.ibb.co/mcqZtHR/new.jpg');
+            background-size: 150%;
             background-repeat: no-repeat;
             color: #fff;
             font-family: Arial, sans-serif;
@@ -33,7 +33,7 @@
 
         .logo {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
             .logo img {
@@ -77,9 +77,9 @@
 
     <div class="container">
         <div class="logo">
-            <img src="https://muhendishane.org.tr/wp-content/uploads/2018/12/M%C3%BChendisHane-logov2.png" alt="Your Logo"> <!-- Specify your logo image path -->
+            <img src="https://i.ibb.co/yWyVML5/12341.png" alt="Your Logo"> <!-- Specify your logo image path -->
         </div>
-        <h2 class="text-center">Mühendishane Açılış Programı</h2>
+        <h2 class="text-center">Sağlık Hukukunda Güncel Meseleler Semineri</h2>
         <div class="form-group">
             <label for="seatId">Koltuk Numarası:</label>
             <input type="number" class="form-control" id="seatId" name="seatId" @bind-value="_model.SeatId" min="1" max="100" required>
@@ -94,7 +94,7 @@
                 <option value="">Cinsiyet Seçiniz</option>
                 @foreach (Gender gender in Enum.GetValues<Gender>())
                 {
-                    <option value="@gender">@gender.GetName()</option>
+                        <option value="@gender">@gender.GetName()</option>
                 }
             </select>
         </div>
@@ -104,7 +104,7 @@
                 <option value="">Üniversite Seçiniz</option>
                 @foreach (var university in _universities)
                 {
-                    <option value="@university">@university</option>
+                        <option value="@university">@university</option>
                 }
             </select>
         </div>
@@ -114,20 +114,20 @@
                 <option value="">Bölüm Seçiniz</option>
                 @foreach (var department in _universityDepartments)
                 {
-                    <option value="@department">@department</option>
+                        <option value="@department">@department</option>
                 }
             </select>
         </div>
         <div class="form-group">
-            <label for="interests">İlgi Alanları:</label>
+            @* <label for="interests">İlgi Alanları:</label> *@
             <div class="interests-group">
                 @for (int i = 0; i < _interests.Count; i++)
                 {
                     int currentIndex = i;
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="@_interests[i]" name="@_interests[i]" @onchange="eventArgs => { InterestClicked(currentIndex, (bool)eventArgs.Value); }" />
-                        <label class="form-check-label" for="@_interests[i]">@_interests[i]</label>
-                    </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="@_interests[i]" name="@_interests[i]" @onchange="eventArgs => { InterestClicked(currentIndex, (bool)eventArgs.Value); }" />
+                            <label class="form-check-label" for="@_interests[i]">@_interests[i]</label>
+                        </div>
                 }
             </div>
         </div>
@@ -147,7 +147,6 @@
 
     List<string> _universities = new()
     {
-        "Diğer",
         "Ankara Bilim Üniversitesi",
         "Ankara Hacı Bayram Veli Üniversitesi",
         "Ankara Medipol Üniversitesi",
@@ -168,71 +167,79 @@
         "TOBB Ekonomi ve Teknoloji Üniversitesi",
         "Türk Hava Kurumu Üniversitesi",
         "Ufuk Üniversitesi",
-        "Yüksek İhtisas Üniversitesi"
+        "Yüksek İhtisas Üniversitesi",
+        "Diğer",
     };
 
     private static readonly List<string> _universityDepartments = new()
     {
+        "Tıp Fakültesi",
+        "Hukuk Fakültesi",
         "Diğer",
-        "Bilgisayar Mühendisliği",
-        "Bilişim Sistemleri Mühendisliği",
-        "Çevre Mühendisliği",
-        "Elektrik ve Elektronik Mühendisliği",
-        "Enerji Sistemleri Mühendisliği",
-        "Endüstri Mühendisliği",
-        "Fizik Mühendisliği",
-        "Geomatik Mühendisliği",
-        "Gıda Mühendisliği",
-        "Havacılık ve Uzay Mühendisliği",
-        "Hidrojeoloji Mühendisliği",
-        "İmalat Mühendisliği",
-        "İnşaat Mühendisliği",
-        "Kimya Mühendisliği",
-        "Maden Mühendisliği",
-        "Makine Mühendisliği",
-        "Mekatronik Mühendisliği",
-        "Metalurji ve Malzeme Mühendisliği",
-        "Mühendislik Bilimleri",
-        "Nükleer Enerji Mühendisliği",
-        "Otomotiv Mühendisliği",
-        "Petrol ve Doğal Gaz Mühendisliği",
-        "Yapay Zeka Mühendisliği",
-        "Yazılım Mühendisliği"
     };
+
+    // private static readonly List<string> _universityDepartments = new()
+    // {
+    //     "Bilgisayar Mühendisliği",
+    //     "Bilişim Sistemleri Mühendisliği",
+    //     "Çevre Mühendisliği",
+    //     "Elektrik ve Elektronik Mühendisliği",
+    //     "Enerji Sistemleri Mühendisliği",
+    //     "Endüstri Mühendisliği",
+    //     "Fizik Mühendisliği",
+    //     "Geomatik Mühendisliği",
+    //     "Gıda Mühendisliği",
+    //     "Havacılık ve Uzay Mühendisliği",
+    //     "Hidrojeoloji Mühendisliği",
+    //     "İmalat Mühendisliği",
+    //     "İnşaat Mühendisliği",
+    //     "Kimya Mühendisliği",
+    //     "Maden Mühendisliği",
+    //     "Makine Mühendisliği",
+    //     "Mekatronik Mühendisliği",
+    //     "Metalurji ve Malzeme Mühendisliği",
+    //     "Mühendislik Bilimleri",
+    //     "Nükleer Enerji Mühendisliği",
+    //     "Otomotiv Mühendisliği",
+    //     "Petrol ve Doğal Gaz Mühendisliği",
+    //     "Yapay Zeka Mühendisliği",
+    //     "Yazılım Mühendisliği",
+    //     "Diğer",
+    // };
 
     private static readonly List<string> _interests = new()
     {
-        "Aviyonik Sistemler",
-        "Bilgisayar Ağları",
-        "Oyun Geliştirme",
-        "Biyoteknoloji",
-        "Dijital Tasarım ve Grafik",
-        "Elektronik Devre Tasarımı",
-        "Endüstri 4.0",
-        "Endüstriyel Tasarım",
-        "Enerji Sistemleri",
-        "Gömülü Yazılım",
-        "Havacılık ve Uzay",
-        "İnnovasyon ve Girişimcilik",
-        "İşletme ve Yönetim",
-        "İzcilik ve Kampçılık",
-        "Jeoloji ve Harita",
-        "Kimya ve Maden",
-        "Malzeme Bilimi",
-        "Nükleer Enerji",
-        "Otomotiv Teknolojileri",
-        "Proje Yönetimi",
-        "Robotik",
-        "Sosyal Sorumluluk Projeleri",
-        "Sürdürülebilirlik ve Yeşil Teknolojiler",
-        "Siber Güvenlik",
-        "Takım Sporları",
-        "Uygulama Geliştirme",
-        "Uydu ve Haberleşme",
-        "Veri Bilimi ve Büyük Veri",
-        "Yapısal Analiz",
-        "Yapay Zeka",
-        "Web Geliştirme",
+        // "Aviyonik Sistemler",
+        // "Bilgisayar Ağları",
+        // "Oyun Geliştirme",
+        // "Biyoteknoloji",
+        // "Dijital Tasarım ve Grafik",
+        // "Elektronik Devre Tasarımı",
+        // "Endüstri 4.0",
+        // "Endüstriyel Tasarım",
+        // "Enerji Sistemleri",
+        // "Gömülü Yazılım",
+        // "Havacılık ve Uzay",
+        // "İnnovasyon ve Girişimcilik",
+        // "İşletme ve Yönetim",
+        // "İzcilik ve Kampçılık",
+        // "Jeoloji ve Harita",
+        // "Kimya ve Maden",
+        // "Malzeme Bilimi",
+        // "Nükleer Enerji",
+        // "Otomotiv Teknolojileri",
+        // "Proje Yönetimi",
+        // "Robotik",
+        // "Sosyal Sorumluluk Projeleri",
+        // "Sürdürülebilirlik ve Yeşil Teknolojiler",
+        // "Siber Güvenlik",
+        // "Takım Sporları",
+        // "Uygulama Geliştirme",
+        // "Uydu ve Haberleşme",
+        // "Veri Bilimi ve Büyük Veri",
+        // "Yapısal Analiz",
+        // "Yapay Zeka",
+        // "Web Geliştirme",
     };
 
     // private static readonly List<bool> _selectedInterests = _interests.Select(i => false).ToList();
