@@ -85,8 +85,8 @@ public class PersonManager
             client.GroupMembers!.Clear();
             foreach (Person otherClient in newGroup)
             {
-                if (client == otherClient)
-                    continue;
+                //if (client == otherClient)
+                //    continue;
                 client.GroupMembers.Add(otherClient);
             }
 
