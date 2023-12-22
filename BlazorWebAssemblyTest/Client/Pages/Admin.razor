@@ -17,6 +17,7 @@ else
 {
     <button @onclick="GroupMembers" class="btn btn-success">Group Members</button>
     <button @onclick="ClearUserData" class="btn btn-danger">Clear Registered User Data</button>
+    <button @onclick="ShowMembers" class="btn btn-secondary">Show Members</button>
 }
 
 @code {
@@ -40,6 +41,12 @@ else
     private async Task GroupMembers()
     {
         await HttpClient.GetAsync("api/Clients/group");
+    }
+
+    private async Task ShowMembers()
+    {
+        string? _allClients = await HttpClient.GetStringAsync($"api/Clients/getAllClients");
+        Console.WriteLine(_allClients);
     }
 
     private async Task ClearUserData()

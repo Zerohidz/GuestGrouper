@@ -19,19 +19,26 @@ public class ClientsController : ControllerBase
     public IActionResult GetMembers(string? seatId)
     {
         GroupMemberDto[]? members = null;
-        try
-        {
-            members = _personManager.GetGroupMembers(seatId);
-        }
-        catch (Exception ex)
-        {
+        members = _personManager.GetGroupMembers(seatId);
 
-        }
         if (members == null)
             return NotFound();
 
         return Ok(members);
     }
+
+    [HttpGet("getAllClients")]
+    public IActionResult GetAllClients()
+    {
+        RegisterRequestModel[]? members = null;
+        members = _personManager.GetAllClients();
+
+        if (members == null)
+            return NotFound();
+
+        return Ok(members);
+    }
+
 
     [HttpGet("group")]
     public IActionResult Group()

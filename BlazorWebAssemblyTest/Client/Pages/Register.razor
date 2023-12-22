@@ -36,9 +36,9 @@
             margin-bottom: 20px;
         }
 
-        .logo img {
-            max-width: 75%; /* Scale the logo to fit within its container */
-        }
+            .logo img {
+                max-width: 75%; /* Scale the logo to fit within its container */
+            }
 
         .form-group label {
             font-weight: bold;
@@ -109,7 +109,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="department">Department:</label>
+            <label for="department">Bölüm:</label>
             <select class="form-control" id="department" name="department" @bind="_model.Department" required>
                 <option value="">Bölüm Seçiniz</option>
                 @foreach (var department in _universityDepartments)
@@ -136,7 +136,7 @@
             <input type="tel" class="form-control" id="phone" name="phone" @bind-value="_model.PhoneNumber">
         </div>
         <div style="margin-top: 10px;">
-            <button class="btn btn-success" type="submit">Click Me!</button>
+            <button class="btn btn-success" type="submit">Gönder</button>
         </div>
     </div>
 
@@ -147,6 +147,7 @@
 
     List<string> _universities = new()
     {
+        "Diğer",
         "Ankara Bilim Üniversitesi",
         "Ankara Hacı Bayram Veli Üniversitesi",
         "Ankara Medipol Üniversitesi",
@@ -172,6 +173,7 @@
 
     private static readonly List<string> _universityDepartments = new()
     {
+        "Diğer",
         "Bilgisayar Mühendisliği",
         "Bilişim Sistemleri Mühendisliği",
         "Çevre Mühendisliği",

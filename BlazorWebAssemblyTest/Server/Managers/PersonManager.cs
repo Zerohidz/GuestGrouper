@@ -32,7 +32,7 @@ public class PersonManager
     {
         if (clientList.Count < 1)
         {
-            Console.WriteLine("Listede adam yok");
+            //Console.WriteLine("Listede adam yok");
             return;
         }
 
@@ -79,7 +79,7 @@ public class PersonManager
             similarities.RemoveAt(0);
         }
 
-        Console.WriteLine("Group ---------------");
+        //Console.WriteLine("Group ---------------");
         foreach (Person client in newGroup)
         {
             client.GroupMembers!.Clear();
@@ -90,9 +90,9 @@ public class PersonManager
                 client.GroupMembers.Add(otherClient);
             }
 
-            Console.WriteLine(client.Name);
+            //Console.WriteLine(client.Name);
         }
-        Console.WriteLine();
+        //Console.WriteLine();
     }
 
     private static int GetSimilarityAmout(Person person1, Person person2)
@@ -109,7 +109,7 @@ public class PersonManager
                 similarity += 7;
         }
 
-        Console.WriteLine($"{person1.Name} and {person2.Name} are {similarity} similar.");
+        //Console.WriteLine($"{person1.Name} and {person2.Name} are {similarity} similar.");
 
         return similarity;
     }
@@ -145,5 +145,32 @@ public class PersonManager
         _femaleClients.Clear();
 
         _isGrouped = false;
+    }
+
+    internal RegisterRequestModel[]? GetAllClients()
+    {
+        List<RegisterRequestModel> allClients = new();
+        allClients.AddRange(_maleClients.Select(c => new RegisterRequestModel
+        {
+            Department = c.Department,
+            Name = c.Name,
+            Gender = c.Gender,
+            Interests = c.Interests?.ToList(),
+            University = c.University,
+            PhoneNumber = c.PhoneNumber,
+            SeatId = c.SeatId
+        }));
+        allClients.AddRange(_femaleClients.Select(c => new RegisterRequestModel
+        {
+            Department = c.Department,
+            Name = c.Name,
+            Gender = c.Gender,
+            Interests = c.Interests?.ToList(),
+            University = c.University,
+            PhoneNumber = c.PhoneNumber,
+            SeatId = c.SeatId
+        }));
+
+        return allClients.ToArray();
     }
 }
