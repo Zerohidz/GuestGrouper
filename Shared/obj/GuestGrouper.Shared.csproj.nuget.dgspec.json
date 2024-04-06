@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj": {}
+    "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj": {
+    "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj",
         "projectName": "GuestGrouper.Shared",
-        "projectPath": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj",
+        "projectPath": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\Shared\\GuestGrouper.Shared.csproj",
         "packagesPath": "C:\\Users\\Zerohidz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\GuestGrouper\\Shared\\obj\\",
+        "outputPath": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

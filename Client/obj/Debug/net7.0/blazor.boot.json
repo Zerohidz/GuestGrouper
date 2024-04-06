@@ -1,7 +1,7 @@
 {
   "entryAssembly": "GuestGrouper.Client",
   "resources": {
-    "hash": "sha256-kseo1t8jxRFTsOAMBG94cAhpESb7ClwGRvC0G3U9GEA=",
+    "hash": "sha256-oGUUI9YWvmXUYigqR167y5I50FyXMgdWPu5H3VbfkWY=",
     "runtime": {
       "dotnet.7.0.17.pjjuh27ehj.js": "sha256-E0n6hbqoR0T+sf5KQWRykPOVHyupoVmuMAlrNdZv/58=",
       "dotnet.timezones.blat": "sha256-GzDmKQksbAkzNe1GNrGcVtpc0naGXOFCpUzq3c/pV+c=",
@@ -202,12 +202,12 @@
       "mscorlib.dll": "sha256-badKdPe6iRs84RQLXBloHSqFKpRH9OadGJi0KTXhRFQ=",
       "netstandard.dll": "sha256-iBSnBFLxBMQ/rJFfJ8Hx43m9PgD1lkZjNx6fDse3/hA=",
       "System.Private.CoreLib.dll": "sha256-6enLVpQNF0y8yVpyDFGLqpY5QEQxGkE3u+QL6M6YcIc=",
-      "GuestGrouper.Shared.dll": "sha256-Lkw0tDUzwEjvhFzmMMD2HP15bvGNKHSmXXY2Qjxmrgc=",
-      "GuestGrouper.Client.dll": "sha256-CZr/FTSESg8CsXudQ6j4hNlBLTtC1L77QDAiRZOyl/I="
+      "GuestGrouper.Shared.dll": "sha256-coihHsWKFe+XSIEsofDzjgq1/s3rEqZHXCiFJdnFZjA=",
+      "GuestGrouper.Client.dll": "sha256-/MeUW/gRczOcvWJ4zGTNbaTpLsEdqSS37oo7EYTPuZA="
     },
     "pdb": {
-      "GuestGrouper.Shared.pdb": "sha256-HpnqGAFsyAMCDDGaLLkwcoU3y45rZYzwrny8qa3ZMtE=",
-      "GuestGrouper.Client.pdb": "sha256-dk739RgCIYv/WTI6dyg7Xmywpb34EJWaVPh73oFl/jA="
+      "GuestGrouper.Shared.pdb": "sha256-AhjoDKNdqpzCTN5SLM9OnMcS5j410bCmg/W7w2wPsJY=",
+      "GuestGrouper.Client.pdb": "sha256-mgD6mtF1oAzVuUB9qzk3Z0udnrN88MHq2qF1Q100t/c="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

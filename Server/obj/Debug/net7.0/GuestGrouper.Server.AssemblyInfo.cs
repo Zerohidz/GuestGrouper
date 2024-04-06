@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GuestGrouper.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29c59802f949d9ad73e9a1f1125f7272ea963c2c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d08eca3ca4198d3d185b80711b80b246540df30")]
 [assembly: System.Reflection.AssemblyProductAttribute("GuestGrouper.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GuestGrouper.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

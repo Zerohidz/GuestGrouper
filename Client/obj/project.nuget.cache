@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g/LC+Pg6JgyGcgOIjS/YxCUnGvH/jT7YktPxQfJgXUwAMZOebrDttF9CRXyFF4YPMUPo+O4m2AB0hgtRpxZZnA==",
+  "dgSpecHash": "JSNAJliL5huWx6PWhHZ2w4hnM+Io7BdbWjFX/qpZ5MsK55kgHh5OaiXGqbANXVcGRe6t/iRjTeXqGhM81xV2fQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\GuestGrouper\\Client\\GuestGrouper.Client.csproj",
+  "projectFilePath": "C:\\Users\\Zerohidz\\Desktop\\DEVELOPMENT\\C#\\GuestGrouper\\Client\\GuestGrouper.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zerohidz\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.11\\microsoft.aspnetcore.authorization.7.0.11.nupkg.sha512",
     "C:\\Users\\Zerohidz\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.11\\microsoft.aspnetcore.components.7.0.11.nupkg.sha512",
