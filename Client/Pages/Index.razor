@@ -1,0 +1,13 @@
+﻿@page "/"
+@inject NavigationManager NavManager
+
+<PageTitle>Açılış Programı</PageTitle>
+
+<h1>Programımıza Hoşgeldiniz!</h1>
+
+@code {
+    protected override void OnInitialized()
+    {
+        NavManager.NavigateTo("/register");
+    }
+}

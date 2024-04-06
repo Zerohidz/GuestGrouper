@@ -1,0 +1,1 @@
+D:\Depo\DEVELOPMENT\C#\BlazorWebAssemblyTest\BlazorWebAssemblyTest\Client\obj\Release\net7.0\browser-wasm\PubTmp\Out\web.config

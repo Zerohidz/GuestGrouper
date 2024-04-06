@@ -1,0 +1,64 @@
+﻿@page "/admin"
+@inject HttpClient HttpClient
+@inject IJSRuntime JSRuntime
+
+<h3>Admin Page</h3>
+
+@if (!_isAdminAuthenticated)
+{
+    <div class="form-group">
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" @bind="_password" class="form-control" @onkeyup="HandleKeyUp" />
+    </div>
+
+    <button @onclick="CheckPassword" class="btn btn-primary">Login</button>
+}
+else
+{
+    <button @onclick="GroupMembers" class="btn btn-success">Group Members</button>
+    <button @onclick="ClearUserData" class="btn btn-danger">Clear Registered User Data</button>
+    <button @onclick="ShowMembers" class="btn btn-secondary">Show Members</button>
+}
+
+@code {
+    private string _password = "";
+    private bool _isAdminAuthenticated = false;
+
+    private string adminPassword = "admin";
+
+    private async Task CheckPassword()
+    {
+        if (_password == adminPassword)
+        {
+            _isAdminAuthenticated = true;
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Wrong Password!");
+        }
+    }
+
+    private async Task GroupMembers()
+    {
+        await HttpClient.GetAsync("api/Clients/group");
+    }
+
+    private async Task ShowMembers()
+    {
+        string? _allClients = await HttpClient.GetStringAsync($"api/Clients/getAllClients");
+        Console.WriteLine(_allClients);
+    }
+
+    private async Task ClearUserData()
+    {
+        await HttpClient.GetAsync("api/Clients/clearData");
+    }
+
+    private void HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !_isAdminAuthenticated)
+        {
+            CheckPassword();
+        }
+    }
+}

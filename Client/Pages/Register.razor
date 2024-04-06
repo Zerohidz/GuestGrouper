@@ -1,0 +1,254 @@
+﻿@page "/register"
+@inject HttpClient HttpClient
+@inject NavigationManager NavManager
+
+<PageTitle>Mühendishane Açılış Programı</PageTitle>
+
+<EditForm Model="_model" OnSubmit="HandleSubmit">
+    <style>
+        /* Custom CSS for the technological theme */
+        body {
+            background-color: #ffffff;
+            background-image: url('https://i.ibb.co/mcqZtHR/new.jpg');
+            background-size: 150%;
+            background-repeat: no-repeat;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Ensure the body takes up the entire viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6); /* Darken the form container background */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px; /* Limit the maximum width of the form container */
+            width: 100%; /* Ensure the container doesn't exceed the viewport width */
+            height: 50%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+            .logo img {
+                max-width: 75%; /* Scale the logo to fit within its container */
+            }
+
+        .form-group label {
+            font-weight: bold;
+            color: #c1dfff; /* Blue label text color */
+        }
+
+        .form-control {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #ffffff; /* Dark text color for better contrast */
+            border: none;
+            border-bottom: 2px solid #007BFF;
+            border-radius: 0;
+        }
+
+        .form-check-input:checked {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .interests-group {
+            column-count: 2; /* Set the number of columns to 5 */
+            column-gap: 30px; /* Adjust the gap between columns */
+        }
+    </style>
+
+    <div class="container">
+        <div class="logo">
+            <img src="https://i.ibb.co/yWyVML5/12341.png" alt="Your Logo"> <!-- Specify your logo image path -->
+        </div>
+        <h2 class="text-center">Sağlık Hukukunda Güncel Meseleler Semineri</h2>
+        <div class="form-group">
+            <label for="seatId">Koltuk Numarası:</label>
+            <input type="number" class="form-control" id="seatId" name="seatId" @bind-value="_model.SeatId" min="1" max="100" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Ad Soyad:</label>
+            <input type="text" class="form-control" id="name" name="name" @bind-value="_model.Name" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Cinsiyet:</label>
+            <select class="form-control" id="gender" name="gender" @bind="_model.Gender" required>
+                <option value="">Cinsiyet Seçiniz</option>
+                @foreach (Gender gender in Enum.GetValues<Gender>())
+                {
+                        <option value="@gender">@gender.GetName()</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="university">Üniversite:</label>
+            <select class="form-control" id="university" name="university" @bind="_model.University" required>
+                <option value="">Üniversite Seçiniz</option>
+                @foreach (var university in _universities)
+                {
+                        <option value="@university">@university</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="department">Bölüm:</label>
+            <select class="form-control" id="department" name="department" @bind="_model.Department" required>
+                <option value="">Bölüm Seçiniz</option>
+                @foreach (var department in _universityDepartments)
+                {
+                        <option value="@department">@department</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="interests">İlgi Alanları:</label>
+            <div class="interests-group">
+                @for (int i = 0; i < _interests.Count; i++)
+                {
+                    int currentIndex = i;
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="@_interests[i]" name="@_interests[i]" @onchange="eventArgs => { InterestClicked(currentIndex, (bool)eventArgs.Value); }" />
+                            <label class="form-check-label" for="@_interests[i]">@_interests[i]</label>
+                        </div>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefon Numarası (optional):</label>
+            <input type="tel" class="form-control" id="phone" name="phone" @bind-value="_model.PhoneNumber">
+        </div>
+        <div style="margin-top: 10px;">
+            <button class="btn btn-success" type="submit">Gönder</button>
+        </div>
+    </div>
+
+</EditForm>
+
+@code {
+    private RegisterRequestModel _model = new();
+
+    List<string> _universities = new()
+    {
+        "Ankara Bilim Üniversitesi",
+        "Ankara Hacı Bayram Veli Üniversitesi",
+        "Ankara Medipol Üniversitesi",
+        "Ankara Müzik ve Güzel Sanatlar Üniversitesi",
+        "Ankara Sosyal Bilimler Üniversitesi",
+        "Ankara Üniversitesi",
+        "Ankara Yıldırım Beyazıt Üniversitesi",
+        "Atılım Üniversitesi",
+        "Başkent Üniversitesi",
+        "Çankaya Üniversitesi",
+        "Gazi Üniversitesi",
+        "Hacettepe Üniversitesi",
+        "İhsan Doğramacı Bilkent Üniversitesi",
+        "Lokman Hekim Üniversitesi",
+        "Orta Doğu Teknik Üniversitesi",
+        "Ostim Teknik Üniversitesi",
+        "TED Üniversitesi",
+        "TOBB Ekonomi ve Teknoloji Üniversitesi",
+        "Türk Hava Kurumu Üniversitesi",
+        "Ufuk Üniversitesi",
+        "Yüksek İhtisas Üniversitesi",
+        "Diğer",
+    };
+
+    private static readonly List<string> _universityDepartments = new()
+    {
+        "Bilgisayar Mühendisliği",
+        "Bilişim Sistemleri Mühendisliği",
+        "Çevre Mühendisliği",
+        "Elektrik ve Elektronik Mühendisliği",
+        "Enerji Sistemleri Mühendisliği",
+        "Endüstri Mühendisliği",
+        "Fizik Mühendisliği",
+        "Geomatik Mühendisliği",
+        "Gıda Mühendisliği",
+        "Havacılık ve Uzay Mühendisliği",
+        "Hidrojeoloji Mühendisliği",
+        "İmalat Mühendisliği",
+        "İnşaat Mühendisliği",
+        "Kimya Mühendisliği",
+        "Maden Mühendisliği",
+        "Makine Mühendisliği",
+        "Mekatronik Mühendisliği",
+        "Metalurji ve Malzeme Mühendisliği",
+        "Mühendislik Bilimleri",
+        "Nükleer Enerji Mühendisliği",
+        "Otomotiv Mühendisliği",
+        "Petrol ve Doğal Gaz Mühendisliği",
+        "Yapay Zeka Mühendisliği",
+        "Yazılım Mühendisliği",
+        "Diğer",
+    };
+
+    private static readonly List<string> _interests = new()
+    {
+        "Aviyonik Sistemler",
+        "Bilgisayar Ağları",
+        "Oyun Geliştirme",
+        "Biyoteknoloji",
+        "Dijital Tasarım ve Grafik",
+        "Elektronik Devre Tasarımı",
+        "Endüstri 4.0",
+        "Endüstriyel Tasarım",
+        "Enerji Sistemleri",
+        "Gömülü Yazılım",
+        "Havacılık ve Uzay",
+        "İnnovasyon ve Girişimcilik",
+        "İşletme ve Yönetim",
+        "İzcilik ve Kampçılık",
+        "Jeoloji ve Harita",
+        "Kimya ve Maden",
+        "Malzeme Bilimi",
+        "Nükleer Enerji",
+        "Otomotiv Teknolojileri",
+        "Proje Yönetimi",
+        "Robotik",
+        "Sosyal Sorumluluk Projeleri",
+        "Sürdürülebilirlik ve Yeşil Teknolojiler",
+        "Siber Güvenlik",
+        "Takım Sporları",
+        "Uygulama Geliştirme",
+        "Uydu ve Haberleşme",
+        "Veri Bilimi ve Büyük Veri",
+        "Yapısal Analiz",
+        "Yapay Zeka",
+        "Web Geliştirme",
+    };
+
+    private async Task HandleSubmit()
+    {
+        await HttpClient.PostAsJsonAsync("api/Auth/register", _model);
+        Console.WriteLine($"{_model.Name} kaydedildi!");
+        NavManager.NavigateTo($"/groupView/{_model.SeatId}");
+    }
+
+    private void InterestClicked(int i, bool isChecked)
+    {
+        Console.WriteLine(i);
+        _model.Interests ??= new();
+        if (isChecked && !_model.Interests.Contains(_interests[i]))
+            _model.Interests.Add(_interests[i]);
+        else if (!isChecked && _model.Interests.Contains(_interests[i]))
+            _model.Interests.Remove(_interests[i]);
+    }
+}

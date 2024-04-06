@@ -1,0 +1,119 @@
+﻿@page "/groupView/{SeatId}"
+@inject HttpClient Http
+
+<PageTitle>Grup Görünümü</PageTitle>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matched Groups</title>
+    <style>
+        /* Custom CSS for the technological theme */
+        body {
+            background-image: url('https://i.ibb.co/mcqZtHR/new.jpg'); /* Specify your background image path */
+            background-size: 150%;
+            background-repeat: no-repeat;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Ensure the body takes up the entire viewport height */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6); /* Darken the form container background */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px; /* Limit the maximum width of the form container */
+            width: 100%; /* Ensure the container doesn't exceed the viewport width */
+        }
+
+        .group {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        .group-members {
+            color: #fff;
+        }
+
+        .member-divider {
+            border-bottom: 3px solid #003677;
+            margin: 5px 0;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .logo img {
+                max-width: 75%; /* Scale the logo to fit within its container */
+            }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://i.ibb.co/yWyVML5/12341.png" alt="Your Logo"> <!-- Specify your logo image path -->
+        </div>
+        <div class="group" id="group1">
+            <h3 class="text-center">Ekip Üyeleriniz:</h3>
+            <p class="text-center">Lütfen Ekip Üyelerinizle tanışın ve kaynaşın. Ödüllü yarışmamızda beraber yarışacaksınız.</p>
+
+            @if (_groupMembers == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                @if (_groupMembers.Length < 1)
+                {
+                    <p colspan="4">Grup üyesi bulunamadı.</p>
+                }
+                @foreach (var member in _groupMembers)
+                {
+                    <div class="group-members">
+                        <p>Koltuk No: @member.SeatId</p>
+                        <p>İsim: @member.Name</p>
+                        <p>Üniversite: @member.University</p>
+                        <p>Bölüm: @member.Department</p>
+                    </div>
+                    <div class="member-divider"></div>
+                }
+            }
+        </div>
+    </div>
+</body>
+
+@code {
+    [Parameter]
+    public string? SeatId { get; set; }
+
+    private GroupMemberDto[]? _groupMembers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        while (true)
+        {
+            try
+            {
+                _groupMembers = await Http.GetFromJsonAsync<GroupMemberDto[]>($"api/Clients/getMembers?seatId={SeatId}");
+
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading data: {ex.Message}");
+            }
+            await Task.Delay(1000);
+        }
+    }
+}
